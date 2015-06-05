@@ -2,22 +2,6 @@ angular.module('starter.controllers', [])
 
 .controller('pageGameCTRL', function($scope, $ionicPopup, $timeout, $ionicModal) {
 
-  $ionicModal.fromTemplateUrl('my-modal.html', {
-    scope: $scope,
-    animation: 'slide-in-up'
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
-  $scope.openModal = function() {
-    $scope.modal.show();
-  };
-  $scope.closeModal = function() {
-    $scope.modal.hide();
-  };
-
-$scope.openModal();
-
-
 $scope.showAlert = function() {
    var alertPopup = $ionicPopup.alert({
      title: 'YO !',
@@ -40,7 +24,7 @@ $scope.showAlert = function() {
 
 .controller('PagePlayCTRL', function($scope, $ionicModal, $ionicPopup, $timeout) {
  
-  $ionicModal.fromTemplateUrl('my-modal.html', {
+  $ionicModal.fromTemplateUrl('templates/my-modal.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
@@ -67,7 +51,6 @@ $scope.showAlert = function() {
       { text: 'Random', type: 'button-positive' }, {text: 'ok', onTap: function(e){}}
       ]
     }).then(function(res){
-      console.log('Le mot est');
     });
   });
   // Execute action on remove modal

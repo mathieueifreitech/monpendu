@@ -19,6 +19,14 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
       // org.apache.cordova.statusbar required
       StatusBar.styleLightContent();
     }
+
+    var fields = {
+       name: "text",
+       age: "integer"
+     };
+     DatabaseService.create("user",fields);
+     DatabaseService.insert("user",['name','age'],["majdi",21]);
+
   });
 })
 
