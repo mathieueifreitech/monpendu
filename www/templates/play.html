@@ -1,0 +1,32 @@
+<ion-view view-title="Let's play !">
+  <ion-content>
+
+<br><br><br><br><br><br><br><br>
+  <div class="row">
+  <div class="col col-20"></div>
+  <div class="col col-60">
+<a href="#/tab/play" class="button button-block button-positive" ng-click="openModal()" ng-click="showPopup()">
+  Start
+</a>
+<br>
+<button class="button button-block button-positive" ng-click="showAlert()">
+  Continue
+</button>
+</div>
+  <div class="col col-20"></div>
+</div>
+<script id="my-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+
+      <a href="#/tab/game" ng-click="closeModal()" class="button icon ion-ios-home"></a>
+      <h1>VS Computer</h1>
+    </ion-header-bar>
+
+    <ion-content>
+      Hello!
+    </ion-content>
+  </ion-modal-view>
+</script>
+  </ion-content>
+</ion-view>
