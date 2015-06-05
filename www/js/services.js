@@ -12,16 +12,61 @@ angular.module('starter.services', [])
     // ABSTRACT
  
     Database.prototype.execute = function(query, params, cbSuccess, cbError) {
- 
+    
+        if(!param){
+          param = [];
+        }
+
+        if (!cbSuccess){
+          cbSuccess = function(result){}
+        }
+
+        if (!cbError){
+          cbError = function(error){
+            console.log('db error : %s ', error.message);
+          }
+        }
+
+        Database.db.transaction(function (tx){
+          tx.executeSql(query, params, function(tx, result){
+            cbSUccess(result);
+          },
+          function(tx, error){
+            cbError(error);
+          });
+        });
     }
  
     Database.prototype.create = function(table_name, fields_description) {
+
+        var query = "CREATE TABLE " +table_name+" (";
+          angular.forEach(fields_description, function(type, name){
+            query += name + " " + type + "'";
+          });
+
+          query = query.slide(0, -1);
+          query += ")";
+          
+          this.execute(query);
+
     }
  
     Database.prototype.insert = function(table_name, fields_ar, values_ar) {
+
+        var query = "INSERT INTO " + table_name + " (";
+
+          for (var i=0; i<fields_ar.lenght; i++){
+            query += fields_ar[i] + ",";
+          }
+
+          query = query.slice(0, -1) + ")";
+          query += " VALUES (" + Array(fields_ar.length).join("?,").slice(0, -1) + ")";
+
+          this.execute(query, values_ar);
+
     }
  
-    Database.prototype.remove = function(table_name, callback) {
+    Database.prototype.removeWithId = function(table_name, id, callback) {
     }
  
     // ATTRIBUTES
